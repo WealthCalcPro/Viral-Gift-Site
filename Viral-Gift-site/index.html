@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mysterious Surprise Gift 🎁</title>
+    <!-- Google Fonts & Confetti Library -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&family=Hind:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        * { box-sizing: border-box; font-family: 'Poppins', 'Hind', sans-serif; margin: 0; padding: 0; }
+        body { 
+            background: radial-gradient(circle at center, #13002f 0%, #070014 100%);
+            color: #ffffff; 
+            text-align: center; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 15px; 
+            overflow-x: hidden;
+        }
+        .container { 
+            background: rgba(255, 255, 255, 0.07); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            padding: 25px 20px; 
+            border-radius: 24px; 
+            border: 2px solid rgba(255, 215, 0, 0.4); 
+            max-width: 420px; 
+            width: 100%; 
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.25); 
+            position: relative;
+            animation: containerGlow 4s infinite alternate;
+        }
+        @keyframes containerGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); border-color: rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 0 45px rgba(255, 0, 128, 0.4); border-color: rgba(255, 0, 128, 0.6); }
+        }
+
+        h1 { font-size: 22px; color: #ffd700; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        .hi-sub { font-size: 15px; color: #ffae00; margin-bottom: 12px; font-family: 'Hind', sans-serif; font-weight: 700; }
+        
+        p { font-size: 13px; color: #e0e0e0; line-height: 1.4; margin-bottom: 4px; }
+        .hi-p { font-size: 13px; color: #bcd4ff; margin-bottom: 15px; font-family: 'Hind', sans-serif; }
+        
+        .gift-box { 
+            font-size: 90px; 
+            cursor: pointer; 
+            animation: bounceGift 1.2s infinite ease-in-out alternate; 
+            margin: 10px 0;
+            display: inline-block;
+            filter: drop-shadow(0 0 25px #ffd700);
+            transition: transform 0.2s;
+        }
+        .gift-box:hover { transform: scale(1.1) rotate(5deg); }
+        @keyframes bounceGift { 
+            0% { transform: translateY(0) scale(1) rotate(0deg); } 
+            100% { transform: translateY(-12px) scale(1.08) rotate(-3deg); } 
+        }
+
+        input[type="text"] { 
+            width: 100%; 
+            padding: 13px; 
+            border-radius: 12px; 
+            border: 2px solid #ffd700; 
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            outline: none; 
+            margin-bottom: 15px; 
+            font-size: 15px; 
+            text-align: center; 
+            transition: all 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+        }
+
+        .btn { 
+            background: linear-gradient(45deg, #ffd700, #ff8c00); 
+            color: #000; 
+            border: none; 
+            padding: 13px 20px; 
+            border-radius: 12px; 
+            font-size: 15px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            width: 100%; 
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        }
+        .btn:active { transform: scale(0.95); }
+        
+        .btn-wa { 
+            background: linear-gradient(45deg, #25D366, #128C7E); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            animation: pulseWa 2s infinite;
+        }
+        @keyframes pulseWa {
+            0% { box-shadow: 0 0 10px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(37, 211, 102, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(37, 211, 102, 0.4); }
+        }
+
+        .ad-space { 
+            background: rgba(0,0,0,0.4); 
+            border: 1px dashed rgba(255,215,0,0.5); 
+            padding: 20px 10px; 
+            margin: 16px 0; 
+            border-radius: 14px; 
+            font-size: 12px; 
+            color: #bbb;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hidden { display: none !important; }
+
+        .progress-container { background: rgba(0,0,0,0.6); border-radius: 10px; height: 18px; width: 100%; overflow: hidden; margin: 10px 0; border: 1px solid #ffd700; }
+        .progress-bar { background: linear-gradient(90deg, #ff0055, #ffd700, #00ff88); background-size: 200% 100%; height: 100%; width: 0%; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); animation: shimmerBar 2s infinite linear; }
+        @keyframes shimmerBar {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .prank-box {
+            background: linear-gradient(135deg, #2b003d, #5d003b);
+            border: 3px solid #ffd700;
+            border-radius: 18px;
+            padding: 20px 15px;
+            margin: 12px 0;
+            box-shadow: 0 0 35px rgba(255, 0, 128, 0.5);
+            animation: popInAnim 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popInAnim { 
+            0% { transform: scale(0.3); opacity: 0; } 
+            70% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; } 
+        }
+        .emoji-laugh { 
+            font-size: 50px; 
+            margin-bottom: 5px; 
+            animation: floatEmoji 1.5s infinite alternate ease-in-out;
+        }
+        @keyframes floatEmoji {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .step-box {
+            animation: fadeInStep 0.5s ease-in-out;
+        }
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🎵 Haryanvi Song Audio File -->
+<audio id="customPrankAudio" preload="auto">
+    <source src="https://files.catbox.moe/r439r6.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <!-- STEP 1: Entrance -->
+    <div id="step1" class="step-box">
+        <h1 id="senderHeader">Mysterious Surprise Gift 🎁</h1>
+        <div class="hi-sub" id="hiSenderHeader">रहस्यमयी सरप्राइज गिफ्ट 🎁</div>
+        
+        <p id="subDesc">Someone has sent you a secret mystery box. Enter your name to open it:</p>
+        <div class="hi-p" id="hiSubDesc">किसी ने आपके लिए गुप्त सरप्राइज बॉक्स भेजा है। इसे खोलने के लिए अपना नाम दर्ज करें:</div>
+
+        <div class="gift-box" onclick="unlockStep2()">🎁</div>
+        <input type="text" id="userName" placeholder="Enter Your Name / अपना नाम लिखें..." spellcheck="false" autocomplete="off" required>
+        <button class="btn" onclick="unlockStep2()">Open Surprise / सरप्राइज खोलें ✨</button>
+        
+        <div class="ad-space">[ 300x250 Large Ad Banner Space 1 ]</div>
+    </div>
+
+    <!-- STEP 2: WhatsApp Share Lock -->
+    <div id="step2" class="step-box hidden">
+        <h1>🔒 Final Step To Unlock!</h1>
+        <div class="hi-sub">अनलॉक करने का आखिरी स्टेप!</div>
+        
+        <p>To unlock this mystery box, share it with 2 Groups or 5 Contacts on WhatsApp!</p>
+        <div class="hi-p">इस मिस्ट्री बॉक्स को खोलने के लिए व्हाट्सएप पर 2 ग्रुप्स या 5 दोस्तों को शेयर करें!</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p id="shareStatus" style="font-size: 13px; font-weight:700; color:#ffd700;">Progress: 0% Completed</p>
+        <p style="font-size: 12px; color:#ffae00; font-family:'Hind',sans-serif;" id="hiShareStatus">प्रोग्रेस: 0% पूर्ण</p>
+
+        <button class="btn btn-wa" onclick="shareOnWhatsApp()" style="margin-top: 10px;">Share on WhatsApp / व्हाट्सएप पर शेयर करें 🚀</button>
+
+        <!-- Ye button tabhi dikhega jab 100% ho jayega, taaki user click karte hi gaana baj sake -->
+        <button id="finalOpenBtn" class="btn hidden" onclick="triggerPrankWithAudio()" style="margin-top: 12px; background: linear-gradient(45deg, #00ff88, #00b4d8); color: #000;">
+            🎁 Tap to Open Final Surprise!<br>
+            <span style="font-family:'Hind',sans-serif; font-size:13px;">अतिम सरप्राइज खोलने के लिए यहाँ क्लिक करें!</span>
+        </button>
+
+        <div class="ad-space">[ 300x250 Large Ad Banner Space 2 ]</div>
+    </div>
+
+    <!-- STEP 3: Pranked Reveal -->
+    <div id="step3" class="step-box hidden">
+        <div class="prank-box">
+            <div class="emoji-laugh">🎁 😜</div>
+            <h1 style="color: #00ff88; font-size: 19px; text-shadow: 0 0 10px rgba(0,255,136,0.5);">You have been successfully Pranked!</h1>
+            <div style="font-size: 13px; color: #ffae00; font-weight: 700; margin-bottom: 12px; font-family: 'Hind', sans-serif;">आपको सफलतापूर्वक प्रैंक किया गया है!</div>
+            
+            <p style="font-size: 13px; color: #fff; font-weight: 600; margin-top: 10px;" id="prankByText">
+                Pranked by: <span id="senderNameDisplay" style="color: #ffd700; font-weight: 800;">[Sender Name]</span>
+            </p>
+            <p style="font-size: 12px; color: #ffd700; font-family: 'Hind', sans-serif; margin-bottom: 10px;" id="hiPrankByText">
+                इनके द्वारा भेजा गया: <span id="hiSenderNameDisplay" style="font-weight: 800;">[Sender Name]</span>
+            </p>
+
+            <p style="font-size: 11px; color: #ffdd59; font-style: italic;">"There was never a gift... Just pure curiosity!"</p>
+            <p style="font-size: 11px; color: #ffdd59; font-family: 'Hind', sans-serif; font-style: italic;">"यहाँ कोई असली गिफ्ट नहीं था... केवल आपकी उत्सुकता थी!"</p>
+        </div>
+        
+        <div class="ad-space">[ 300x250 Large Ad Banner Space 3 ]</div>
+
+        <button class="btn" onclick="createOwnLink()" style="background: linear-gradient(45deg, #ff007f, #7928ca); color: white;">
+            🔥 Create Your Own Prank Link<br>
+            <span style="font-family:'Hind',sans-serif; font-size:13px;">अपना खुद का प्रैंक लिंक बनाएं</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    let shareClicks = 0;
+    const urlParams = new URLSearchParams(window.location.search);
+    const sender = urlParams.get('n') || "Someone / कोई दोस्त";
+
+    if (urlParams.get('n')) {
+        document.getElementById('subDesc').innerText = sender + " has sent you a secret mystery box. Enter your name:";
+        document.getElementById('hiSubDesc').innerText = sender + " ने आपके लिए गुप्त सरप्राइज भेजा है। अपना नाम दर्ज करें:";
+    }
+
+    function unlockStep2() {
+        let name = document.getElementById('userName').value.trim();
+        if (name === "") {
+            alert("Please enter your name / कृपया अपना नाम दर्ज करें!");
+            return;
+        }
+        document.getElementById('step1').classList.add('hidden');
+        document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function shareOnWhatsApp() {
+        let inputName = document.getElementById('userName').value.trim();
+        shareClicks++;
+
+        let shareText = encodeURIComponent(`🎁 *${inputName}* sent you a Mysterious Surprise Gift!\n🎁 *${inputName}* ने आपको एक रहस्यमयी सरप्राइज गिफ्ट भेजा है!\n\nTap the link below to check what's inside 👇\n`);
+        let currentUrl = window.location.href.split('?')[0] + "?n=" + encodeURIComponent(inputName);
+        
+        window.open(`https://api.whatsapp.com/send?text=${shareText}${encodeURIComponent(currentUrl)}`, '_blank');
+
+        if (shareClicks === 1) {
+            document.getElementById('progressBar').style.width = "35%";
+            document.getElementById('shareStatus').innerText = "Progress: 35% (Share to more groups/friends)";
+            document.getElementById('hiShareStatus').innerText = "प्रोग्रेस: 35% (और ग्रुप्स/दोस्तों को भेजें)";
+        } else if (shareClicks === 2) {
+            document.getElementById('progressBar').style.width = "70%";
+            document.getElementById('shareStatus').innerText = "Progress: 70% (Just 1 more share to unlock!)";
+            document.getElementById('hiShareStatus').innerText = "प्रोग्रेस: 70% (बस 1 शेयर और बाकी है!)";
+        } else if (shareClicks >= 3) {
+            document.getElementById('progressBar').style.width = "100%";
+            document.getElementById('shareStatus').innerText = "Progress: 100% Unlocked!";
+            document.getElementById('hiShareStatus').innerText = "प्रोग्रेस: 100% अनलॉक हो गया!";
+            
+            // WhatsApp share button hide karke user ke liye direct "Tap to Open" button dikha do
+            document.querySelector('.btn-wa').classList.add('hidden');
+            document.getElementById('finalOpenBtn').classList.remove('hidden');
+        }
+    }
+
+    // Ye function user ke click par chalega, isliye browser audio block nahi kar payega
+    function triggerPrankWithAudio() {
+        let customAudio = document.getElementById('customPrankAudio');
+        if (customAudio) {
+            customAudio.currentTime = 0;
+            customAudio.play().catch(e => console.log('Audio error:', e));
+        }
+
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('step3').classList.remove('hidden');
+        
+        document.getElementById('senderNameDisplay').innerText = sender;
+        document.getElementById('hiSenderNameDisplay').innerText = sender;
+
+        confetti({
+            particleCount: 160,
+            spread: 100,
+            origin: { y: 0.5 }
+        });
+    }
+
+    function createOwnLink() {
+        window.location.href = window.location.href.split('?')[0];
+    }
+</script>
+</body>
+</html>
